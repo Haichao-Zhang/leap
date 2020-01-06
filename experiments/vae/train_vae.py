@@ -4,6 +4,9 @@ import railrl.misc.hyperparameter as hyp
 
 from multiworld.envs.mujoco.cameras import *
 
+import sys
+sys.setrecursionlimit(3000)
+
 variant = dict(
     env_kwargs=dict(),
     imsize=84,

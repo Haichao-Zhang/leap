@@ -2,6 +2,8 @@ import torch
 import numpy as np
 from torch.autograd import Variable as TorchVariable
 from torch.nn import functional as F
+import sys
+sys.setrecursionlimit(3000)
 
 
 def soft_update_from_to(source, target, tau):
@@ -141,8 +143,11 @@ def batch_square_vector(vector, M):
 
 
 def fanin_init(tensor):
-    if isinstance(tensor, TorchVariable):
-        return fanin_init(tensor.data)
+    # print("-----------------")
+    # print(tensor.type())
+    # print(isinstance(tensor, TorchVariable))
+    # if isinstance(tensor, TorchVariable):
+    #     return fanin_init(tensor.data)
     size = tensor.size()
     if len(size) == 2:
         fan_in = size[0]
@@ -151,12 +156,13 @@ def fanin_init(tensor):
     else:
         raise Exception("Shape must be have dimension at least 2.")
     bound = 1. / np.sqrt(fan_in)
-    return tensor.uniform_(-bound, bound)
+    new_tensor = tensor.clone()
+    return new_tensor.uniform_(-bound, bound)
 
 
 def fanin_init_weights_like(tensor):
-    if isinstance(tensor, TorchVariable):
-        return fanin_init(tensor.data)
+    # if isinstance(tensor, TorchVariable):
+    #     return fanin_init(tensor.data)
     size = tensor.size()
     if len(size) == 2:
         fan_in = size[0]

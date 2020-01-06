@@ -41,7 +41,7 @@ def train_vae(variant):
     dataset_path = variant['generate_vae_dataset_kwargs'].get('dataset_path', None)
     test_p = variant['generate_vae_dataset_kwargs'].get('test_p', 0.9)
     filename = local_path_from_s3_or_local_path(dataset_path)
-    dataset = np.load(filename).item()
+    dataset = np.load(filename, allow_pickle=True).item()
     N = dataset['obs'].shape[0]
     n = int(N * test_p)
     train_data = {}
@@ -179,7 +179,7 @@ def train_vae(variant):
     for epoch in range(variant['num_epochs']):
         save_vis = (epoch % vis_variant['save_period'] == 0 or epoch == variant['num_epochs'] - 1)
         save_vae = (epoch % variant['snapshot_gap'] == 0 or epoch == variant['num_epochs'] - 1)
-        
+
         t.train_epoch(epoch)
         t.test_epoch(
             epoch,
