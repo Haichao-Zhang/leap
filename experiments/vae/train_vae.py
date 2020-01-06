@@ -45,15 +45,13 @@ env_params = {
     'pm': {
         'env_id': ['Image48PointmassUWallTrainEnvBig-v0'],
         'imsize': [48],
-
         'vae_variant.beta': [7.5],
         'vae_variant.generate_vae_dataset_kwargs.dataset_path': [
-            'your-npy-path-here',
+            '/mnt/DATA/pm/01-06-generate-vae-dataset/01-06-generate-vae-dataset_2020_01_06_11_25_14_id000--s62788/vae_dataset.npy',
         ],
         'vae_variant.vae_type': ['VAE'],
         'vae_variant.vae_kwargs.gaussian_decoder': [False],
         'vae_variant.vae_kwargs.use_sigmoid_for_decoder': [True],
-
         'vae_variant.vis_kwargs.save_period': [500],
         'vae_variant.vis_kwargs.vis_list': [[
             'latent_histogram_2d',
@@ -64,7 +62,6 @@ env_params = {
     },
     'pnr': {
         'env_id': ['Image84SawyerPushAndReachArenaTrainEnvBig-v0'],
-
         'vae_variant.beta': [2.5],
         'vae_variant.generate_vae_dataset_kwargs.dataset_path': [
             'your-npy-path-here',
@@ -73,7 +70,6 @@ env_params = {
         'vae_variant.vae_kwargs.gaussian_decoder': [True],
         'vae_variant.vae_kwargs.use_sigmoid_for_decoder': [False],
         'vae_variant.vae_kwargs.num_filters': [8],
-
         'vae_variant.vis_kwargs.save_period': [500],
         'vae_variant.vis_kwargs.vis_list': [[
             'latent_histogram_2d',
