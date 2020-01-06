@@ -273,11 +273,12 @@ def from_numpy_double(*args, **kwargs):
 
 
 def get_numpy(tensor):
-    if isinstance(tensor, TorchVariable):
-        return get_numpy(tensor.data)
+    # if isinstance(tensor, TorchVariable):
+    #     return get_numpy(tensor.data)
+    tensor_detach = tensor.detach()
     if _use_gpu:
-        return tensor.cpu().numpy()
-    return tensor.numpy()
+        return tensor_detach.cpu().numpy()
+    return tensor_detach.numpy()
 
 
 def np_to_var(np_array, double=False, **kwargs):

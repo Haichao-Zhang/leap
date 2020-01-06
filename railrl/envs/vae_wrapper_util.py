@@ -22,7 +22,7 @@ def compute_sampled_latents(vae_env):
         from multiworld.core.image_env import normalize_image
         from railrl.misc.asset_loader import local_path_from_s3_or_local_path
         filename = local_path_from_s3_or_local_path(vae_env.vae_dataset_path)
-        dataset = np.load(filename).item()
+        dataset = np.load(filename, allow_pickle=True).item()
         vae_env.num_samples_for_latent_histogram = min(dataset['next_obs'].shape[0], vae_env.num_samples_for_latent_histogram)
         sampled_idx = np.random.choice(dataset['next_obs'].shape[0], vae_env.num_samples_for_latent_histogram)
         if vae_env.vae_input_key_prefix == 'state':

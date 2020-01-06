@@ -153,8 +153,7 @@ class ConvVAETrainer(Serializable):
             # pixels)
             return -F.binary_cross_entropy(
                 recon_x,
-                x.narrow(start=0, length=self.imlength,
-                         dimension=1).contiguous().view(-1, self.imlength),
+                x.narrow(dim=1, start=0, length=self.imlength).contiguous().view(-1, self.imlength),
                 size_average=False,
             ) / batch_size
 
@@ -235,13 +234,13 @@ class ConvVAETrainer(Serializable):
                     obs, next_obs, actions
                 )
                 loss += self.linearity_weight * linear_dynamics_loss
-                linear_losses.append(linear_dynamics_loss.data[0])
+                linear_losses.append(linear_dynamics_loss.item())
             loss.backward()
 
-            vae_losses.append(vae_loss.data[0])
-            losses.append(loss.data[0])
-            des.append(de.data[0])
-            kles.append(kle.data[0])
+            vae_losses.append(vae_loss.item())
+            losses.append(loss.item())
+            des.append(de.item())
+            kles.append(kle.item())
 
             self.optimizer.step()
 
@@ -286,21 +285,21 @@ class ConvVAETrainer(Serializable):
                     obs, next_obs, actions
                 )
                 loss += self.linearity_weight * linear_dynamics_loss
-                linear_losses.append(linear_dynamics_loss.data[0])
+                linear_losses.append(linear_dynamics_loss.item())
 
             z_data = ptu.get_numpy(z_mu[:,0].cpu())
             for i in range(len(z_data)):
                 zs.append(z_data[i, :])
-            vae_losses.append(vae_loss.data[0])
-            iwae_losses.append(iwae_loss.data[0])
-            losses.append(loss.data[0])
-            des.append(de.data[0])
-            kles.append(kle.data[0])
+            vae_losses.append(vae_loss.item())
+            iwae_losses.append(iwae_loss.item())
+            losses.append(loss.item())
+            des.append(de.item())
+            kles.append(kle.item())
 
             if batch_idx == 0 and save_reconstruction:
                 n = min(data['next_obs'].size(0), 16)
                 comparison = torch.cat([
-                    data['next_obs'][:n].narrow(start=0, length=self.imlength, dimension=1)
+                    data['next_obs'][:n].narrow(dim=1, start=0, length=self.imlength)
                     .contiguous().view(
                         -1, self.input_channels, self.imsize, self.imsize
                     ),

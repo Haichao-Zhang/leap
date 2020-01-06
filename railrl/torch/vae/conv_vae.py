@@ -135,7 +135,8 @@ class ConvVAE(PyTorchModule):
 
     def encode(self, input):
         input = input.view(-1, self.imlength + self.added_fc_size)
-        conv_input = input.narrow(start=0, length=self.imlength, dimension=1)
+        # conv_input = input.narrow(start=0, length=self.imlength, dimension=1)
+        conv_input = input.narrow(dim=1, start=0, length=self.imlength)
 
         x = conv_input.contiguous().view(-1, self.input_channels, self.imsize, self.imsize)
         x = F.relu(self.enc_bn1(self.enc_conv1(x)))
