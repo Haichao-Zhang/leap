@@ -128,8 +128,12 @@ def load_vae_meta_data(variant):
     import json
 
     rl_variant = variant['rl_variant']
+    print(rl_variant)
     if 'vae_path' in rl_variant:
+        print(osp.join(rl_variant['vae_path'], 'variant.json'))
         local_path = local_path_from_s3_or_local_path(osp.join(rl_variant['vae_path'], 'variant.json'))
+        print("=============")
+        print(local_path)
         with open(local_path) as f:
             data = json.load(f)
             variant['vae_exp_prefix'] = data['exp_prefix']
@@ -219,7 +223,7 @@ def load_vae_base_path_meta_data(search_space):
             ]
     if 'rl_variant.vae_base_path' in search_space:
         del search_space['rl_variant.vae_base_path']
-        
+
 def match_ckpts_and_vaes(search_space):
     if search_space.get('rl_variant.num_rl_seeds_per_vae', None) is not None:
         num_rl_seeds_per_vae = search_space['rl_variant.num_rl_seeds_per_vae'][0]

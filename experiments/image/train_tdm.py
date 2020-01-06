@@ -42,16 +42,14 @@ env_params = {
         #     'your-base-path-here',
         # ],
         'rl_variant.vae_path': [
-            'your-path-here',
+            '/mnt/DATA/pm/01-06-train-vae/01-06-train-vae_2020_01_06_12_03_52_id000--s88015',
         ],
-
         'rl_variant.algo_kwargs.base_kwargs.max_path_length': [100],
         'rl_variant.algo_kwargs.tdm_kwargs.max_tau': [25],
         'rl_variant.algo_kwargs.base_kwargs.num_epochs': [200],
         'rl_variant.exploration_type': ['epsilon'],
         'rl_variant.exploration_noise': [0.1],
         'rl_variant.algo_kwargs.base_kwargs.reward_scale': [1e0],
-
         'rl_variant.snapshot_gap': [10],
         'rl_variant.vis_kwargs.save_period': [20],
         'rl_variant.vis_kwargs.vis_list': [[
@@ -60,7 +58,8 @@ env_params = {
         'rl_variant.vis_kwargs.vis_blacklist': [[
             'reconstr_image_reproj_observation',
         ]],
-        'rl_variant.vae_wrapped_env_kwargs.v_func_heatmap_bounds': [(-1.5, 0.0)],
+        'rl_variant.vae_wrapped_env_kwargs.v_func_heatmap_bounds':
+        [(-1.5, 0.0)],
     },
     'pnr': {
         'env_id': ['Image84SawyerPushAndReachArenaTrainEnvBig-v0'],
@@ -71,7 +70,6 @@ env_params = {
         'rl_variant.vae_path': [
             'your-path-here',
         ],
-
         'rl_variant.algo_kwargs.base_kwargs.max_path_length': [100],
         'rl_variant.algo_kwargs.tdm_kwargs.max_tau': [25],
         'rl_variant.algo_kwargs.base_kwargs.batch_size': [2048],
@@ -79,7 +77,6 @@ env_params = {
         'rl_variant.exploration_type': ['ou'],
         'rl_variant.exploration_noise': [0.3],
         'rl_variant.algo_kwargs.base_kwargs.reward_scale': [1e1],
-
         'rl_variant.snapshot_gap': [25],
         'rl_variant.vis_kwargs.save_period': [50],
         'rl_variant.vis_kwargs.vis_list': [[

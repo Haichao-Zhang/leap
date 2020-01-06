@@ -606,7 +606,7 @@ def dump_reconstructions(vae_env, epoch, n_recon=16):
         from multiworld.core.image_env import normalize_image
         from railrl.misc.asset_loader import local_path_from_s3_or_local_path
         filename = local_path_from_s3_or_local_path(vae_env.vae_dataset_path)
-        dataset = np.load(filename).item()
+        dataset = np.load(filename, allow_pickle=True).item()
         sampled_idx = np.random.choice(dataset['next_obs'].shape[0], n_recon)
         if vae_env.vae_input_key_prefix == 'state':
             states = dataset['next_obs'][sampled_idx]
@@ -627,7 +627,7 @@ def dump_reconstructions(vae_env, epoch, n_recon=16):
         return
 
     comparison = torch.cat([
-        imgs.narrow(start=0, length=vae_env.wrapped_env.image_length, dimension=1).contiguous().view(
+        imgs.narrow(dim=1, start=0, length=vae_env.wrapped_env.image_length).contiguous().view(
             -1,
             vae_env.wrapped_env.channels,
             vae_env.wrapped_env.imsize,
