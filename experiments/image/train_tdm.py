@@ -1,3 +1,7 @@
+import sys
+
+print(sys.executable)
+
 from railrl.misc.exp_util import *
 from railrl.launchers.exp_launcher import tdm_experiment
 import railrl.misc.hyperparameter as hyp

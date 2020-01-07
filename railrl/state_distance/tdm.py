@@ -54,7 +54,7 @@ class TemporalDifferenceModel(TorchRLAlgorithm, metaclass=abc.ABCMeta):
             - all_valid: Always use all 0 to max_tau values
         :param goal_reached_epsilon: Epsilon used to determine if the goal
         has been reached. Used by `indicator` version of `reward_type` and when
-        `terminate_whe_goal_reached` is True.
+        `terminate_when_goal_reached` is True.
         :param terminate_when_goal_reached: Do you terminate when you have
         reached the goal?
         :param goal_weights: None or the weights for the different goal

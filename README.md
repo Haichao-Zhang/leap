@@ -2,8 +2,8 @@
 
 This is the codebase for Latent Embeddings for Abstracted Planning (LEAP), from the following paper:
 
-**Planning with Goal Conditioned Policies** 
-<br> Soroush Nasiriany*, Vitchyr Pong*, Steven Lin, Sergey Levine 
+**Planning with Goal Conditioned Policies**
+<br> Soroush Nasiriany*, Vitchyr Pong*, Steven Lin, Sergey Levine
 <br> Neural Information Processing Systems 2019
 <br> [Arxiv](https://arxiv.org/abs/1911.08453) | [Website](https://sites.google.com/view/goal-planning/)
 
@@ -18,6 +18,24 @@ This guide contains information about (1) [Installation](#installation), (2) [Ex
   - follow [instructions](https://github.com/vitchyr/viskit/blob/leap/README.md) to setup repo
 - Current codebase: ```git clone https://github.com/snasiriany/leap```
   - install dependencies: `pip install -r requirements.txt`
+
+
+- Installation:
+   `python3 -m venv .venv`
+   `source ./.venv/bin/activate`
+  `pip install -r requirements.txt`
+  `python3 -m pip install psutil`
+  `pip install -e .`
+  For Multi-world:
+  in ./.venv/bin/activate file add
+  `export PYTHONPATH=$PYTHONPATH:/mnt/DATA/work/RL/planning/leap/multiworld`
+  ==> instead of the above, do the following in ./multiworld folder:
+  `python setup.py install`
+  Install mujoco_py: (under /mujoco_py/ folder)
+  `python setup.py install`
+
+
+
 
 ### Add paths
 ```
@@ -77,7 +95,7 @@ Train the VAE. There are two variants, image based (for pm and pnr) and state ba
 python vae/train_vae.py --env <env-name>
 python vae/train_vae_state.py --env <env-name>
 ```
-Before running: locate the corresponding `.npy` file from the previous stage. The `.npy` file contains the VAE dataset. Place the path in your config settings for your env inside the script: 
+Before running: locate the corresponding `.npy` file from the previous stage. The `.npy` file contains the VAE dataset. Place the path in your config settings for your env inside the script:
 ```
 'vae_variant.generate_vae_dataset_kwargs.dataset_path': ['your-npy-path-here'],
 ```
@@ -119,7 +137,7 @@ LOCAL_LOG_DIR/<env>/<exp_prefix>/<foldername>
  - `LOCAL_LOG_DIR` is the directory set by `railrl.config.launcher_config.LOCAL_LOG_DIR`
  - `<exp_prefix>` is given either to `setup_logger`.
  - `<foldername>` is auto-generated and based off of `exp_prefix`.
- - inside this folder, you should see a file called `progress.csv`. 
+ - inside this folder, you should see a file called `progress.csv`.
 
 Inside the viskit codebase, run:
 
