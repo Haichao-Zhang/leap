@@ -38,17 +38,15 @@ env_params = {
         #     'your-base-path-here',
         # ],
         'rl_variant.ckpt': [
-            'your-path-here',
+            '/mnt/DATA/pm/01-06-train-tdm/01-06-train-tdm_2020_01_06_13_57_24_id000--s50899/',
         ],
-
         'rl_variant.eval_algo': ['mb-tdm'],
         'rl_variant.SubgoalPlanner_kwargs.realistic_subgoal_weight': [0.1],
 
         # 'rl_variant.ckpt_epoch': [490],
         'rl_variant.test_ckpt': [True],
-        'rl_variant.algo_kwargs.base_kwargs.num_epochs': [400],
+        'rl_variant.algo_kwargs.base_kwargs.num_epochs': [150],
         'rl_variant.algo_kwargs.base_kwargs.epoch_freq': [50],
-
         'rl_variant.vis_kwargs.vis_list': [[
             'latent_histogram',
             'v',
@@ -68,7 +66,6 @@ env_params = {
         'rl_variant.ckpt': [
             'your-path-here',
         ],
-
         'rl_variant.eval_algo': ['mf-tdm'],
         'rl_variant.SubgoalPlanner_kwargs.realistic_subgoal_weight': [0.001],
 
@@ -76,7 +73,6 @@ env_params = {
         'rl_variant.test_ckpt': [True],
         'rl_variant.algo_kwargs.base_kwargs.num_epochs': [1000],
         'rl_variant.algo_kwargs.base_kwargs.epoch_freq': [250],
-
         'rl_variant.vis_kwargs.vis_list': [[
             'latent_histogram',
             'plt',
